@@ -29,7 +29,33 @@ function createTodo(body) {
     })
 }
 
+function updateTodoById(id, body) {
+    return new Promise((resolve, reject) => {
+        Todo.findByIdAndUpdate(id, body, {new : true})
+        .then((payload) => {
+            resolve(payload)
+        })
+        .catch((error) => {
+            reject(error)
+        })
+    })
+}
+
+function deleteById(id) {
+    return new Promise((resolve, reject) => {
+        Todo.findByIdAndDelete(id)
+        .then((payload) =>{
+            resolve(payload)
+        })
+        .catch((error) =>{
+            reject(error)
+        })
+    })
+}
+
 module.exports = {
     getAllTodo,
     createTodo,
+    updateTodoById,
+    deleteById,
 }
